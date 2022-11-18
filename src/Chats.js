@@ -16,11 +16,12 @@ import {
   renderCustomView,
 } from './MessageContainer';
 
-import {Text, View, NativeModule} from 'react-native';
+import {Text, View, NativeModule, TouchableOpacity} from 'react-native';
 import {NativeModules, NativeEventEmitter} from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const {GenesysMessenger} = NativeModules;
-const MessageEvents = new NativeEventEmitter(NativeModules.GenesysMessenger);
+// const MessageEvents = new NativeEventEmitter(NativeModules.GenesysMessenger);
 
 const Chats = () => {
   const [messages, setMessages] = useState([]);
@@ -39,15 +40,15 @@ const Chats = () => {
 
   useEffect(() => {
     GenesysMessenger.setupGenesis();
-    MessageEvents.addListener('onMessage', res => {
-      if (res && res.message) {
-        if (res.type === 'inbound') {
-          addInboundMessage(res.message);
-        } else {
-          addOutboundMessage(res.message);
-        }
-      }
-    });
+    // MessageEvents.addListener('onMessage', res => {
+    //   if (res && res.message) {
+    //     if (res.type === 'inbound') {
+    //       addInboundMessage(res.message);
+    //     } else {
+    //       addOutboundMessage(res.message);
+    //     }
+    //   }
+    // });
     return () => {};
   }, []);
 
@@ -87,6 +88,23 @@ const Chats = () => {
     // );
   };
 
+  const uploadImage = async () => {
+    console.log('aaaaa');
+    try {
+      const result = await launchImageLibrary({
+        mediaType: 'photo',
+        includeBase64: true,
+      });
+      console.log(result.assets[0].fileSize);
+      GenesysMessenger.uploadAttachment(
+        result.assets[0].base64,
+        result.assets[0].fileName,
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={{flex: 1}}>
       <GiftedChat
@@ -96,6 +114,9 @@ const Chats = () => {
           _id: 1,
         }}
       />
+      <TouchableOpacity onPress={uploadImage}>
+        <Text>Upload</Text>
+      </TouchableOpacity>
     </View>
   );
 };

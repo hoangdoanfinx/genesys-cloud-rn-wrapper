@@ -81,14 +81,37 @@ class GenesysMessenger: RCTEventEmitter {
   }
   
   
-  @objc func uploadAttachment(_ base64String: String) {
+  
+  @objc func uploadAttachment(_ data: Data, withFileName filename: String) { // path or base64 String
     do {
       //
+      print(data.count)
+      let bytes = [UInt8](data)
+
+      let bytesLength =  Int32(bytes.count)
+      print("bytesLength")
+      print(bytesLength)
+      
+      let byteArray = KotlinByteArray.init(size: bytesLength)
+      
+            
+      for (index, element) in bytes.enumerated() {
+        byteArray.set(index: Int32(index), value: Int8(element))
+      }
+      
+      print(byteArray.size)
+      
+      print(byteArray.get(index: 0))
+      print(byteArray.get(index: bytesLength - 1))
+          
+
+      try self.client?.attach(byteArray: byteArray, fileName: filename)
+      
     } catch {
       print("Errorrrr")
     }
   }
-  
+    
   @objc func sendMessage(_ message: String) {
     do {
       try self.client!.sendMessage(text: message)
@@ -105,4 +128,10 @@ class GenesysMessenger: RCTEventEmitter {
     true
   }
     
+}
+
+extension Data {
+    var bytes: [UInt8] {
+        return [UInt8](self)
+    }
 }

@@ -20,7 +20,7 @@
     return dispatch_get_main_queue();
 }
 RCT_EXTERN_METHOD(setupGenesis)
-RCT_EXTERN_METHOD(uploadAttachment:(NSString)base64String)
+RCT_EXTERN_METHOD(uploadAttachment:(NSData)data withFileName:NSString()filename )
 RCT_EXTERN_METHOD(sendMessage:(NSString)message)
 
 @end
