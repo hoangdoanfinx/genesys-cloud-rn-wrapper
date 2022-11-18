@@ -10,26 +10,8 @@ PODS:
     - React-jsi (= 0.70.5)
     - ReactCommon/turbomodule/core (= 0.70.5)
   - fmt (6.2.1)
-  - genesys-cloud-messenger-mobile-sdk-rn-wrapper (1.3.3):
-    - GenesysCloud (= 4.0.1)
-    - React-Core
-  - GenesysCloud (4.0.1):
-    - GenesysCloud/Core (= 4.0.1)
-  - GenesysCloud/Core (4.0.1):
-    - GenesysCloudAccessibility (= 2.0.0)
-    - GenesysCloudBold (= 3.0.0)
-    - GenesysCloudBot (= 2.0.0)
-    - GenesysCloudMessengerTransport (= 1.1.14)
-  - GenesysCloudAccessibility (2.0.0)
-  - GenesysCloudBold (3.0.0):
-    - GenesysCloudCore (= 4.0.0)
-  - GenesysCloudBot (2.0.0):
-    - GenesysCloudCore (= 4.0.0)
-  - GenesysCloudCore (4.0.0)
-  - GenesysCloudMessengerTransport (1.1.14):
-    - jetfire (= 0.1.5)
+  - GenesysCloudMessengerTransport (2.1.0)
   - glog (0.3.5)
-  - jetfire (0.1.5)
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -320,7 +302,7 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
-  - genesys-cloud-messenger-mobile-sdk-rn-wrapper (from `../node_modules/genesys-cloud-messenger-mobile-sdk-rn-wrapper`)
+  - GenesysCloudMessengerTransport (= 2.1.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -357,13 +339,6 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs:
     - fmt
     - GenesysCloudMessengerTransport
-    - jetfire
-  https://github.com/genesys/dx-sdk-specs-dev:
-    - GenesysCloud
-    - GenesysCloudAccessibility
-    - GenesysCloudBold
-    - GenesysCloudBot
-    - GenesysCloudCore
 
 EXTERNAL SOURCES:
   boost:
@@ -374,8 +349,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
-  genesys-cloud-messenger-mobile-sdk-rn-wrapper:
-    :path: "../node_modules/genesys-cloud-messenger-mobile-sdk-rn-wrapper"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   RCT-Folly:
@@ -443,15 +416,8 @@ SPEC CHECKSUMS:
   FBLazyVector: affa4ba1bfdaac110a789192f4d452b053a86624
   FBReactNativeSpec: fe8b5f1429cfe83a8d72dc8ed61dc7704cac8745
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  genesys-cloud-messenger-mobile-sdk-rn-wrapper: 7bca7e1ef683350111f5ad17954789a23b71bcf6
-  GenesysCloud: 4f7d8292a25f3737c3dda14129d3c4bc9c021b7d
-  GenesysCloudAccessibility: df913d6f8a08d05957dcdc7bf2990800e9e4084d
-  GenesysCloudBold: a8d1448de88860a1139ce372fd22af9163868de1
-  GenesysCloudBot: 2744ef4723fafdbc2ef99e8a66d321c4165466f6
-  GenesysCloudCore: 2a362dd6678b53549899c86091486cc4b03ac3fa
-  GenesysCloudMessengerTransport: 63c6c7ae96e3810a94413fae9ba9f1a8816f4422
+  GenesysCloudMessengerTransport: 00d5839e18dda5dfde505af5157d4e431cb198fd
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  jetfire: 60c16cd6ae0282928e24203eb93f03b89c1929ce
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
   RCTRequired: 21229f84411088e5d8538f21212de49e46cc83e2
   RCTTypeSafety: 62eed57a32924b09edaaf170a548d1fc96223086
@@ -482,6 +448,6 @@ SPEC CHECKSUMS:
   ReactCommon: c9246996e73bf75a2c6c3ff15f1e16707cdc2da9
   Yoga: eca980a5771bf114c41a754098cd85e6e0d90ed7
 
-PODFILE CHECKSUM: 3cae05e812581643d3117b18eb4d88044a775a35
+PODFILE CHECKSUM: 53249fd095162b399695670f12e2ecc0acf8e154
 
 COCOAPODS: 1.11.3

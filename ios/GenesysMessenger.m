@@ -7,13 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "React/RCTBridgeModule.h"
-#import "GenesysCloudModule.h"
-#import <GenesysCloud/GenesysCloud.h>
-#import <GenesysCloud/ChatHandler.h>
-#import <GenesysCloud/BaseChatHandler.h>
-
-
-
 
 @interface RCT_EXTERN_MODULE(GenesysMessenger, NSObject)
 - (dispatch_queue_t)methodQueue {

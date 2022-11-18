@@ -16,12 +16,12 @@ import {
   renderCustomView,
 } from './MessageContainer';
 
-import {Text, View, NativeModule, TouchableOpacity} from 'react-native';
+import {Text, View, NativeModule, TouchableOpacity, Image} from 'react-native';
 import {NativeModules, NativeEventEmitter} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-const {GenesysMessenger} = NativeModules;
-// const MessageEvents = new NativeEventEmitter(NativeModules.GenesysMessenger);
+export const {GenesysMessenger} = NativeModules;
+const MessageEvents = new NativeEventEmitter(NativeModules.GenesysMessenger);
 
 const Chats = () => {
   const [messages, setMessages] = useState([]);
@@ -40,32 +40,50 @@ const Chats = () => {
 
   useEffect(() => {
     GenesysMessenger.setupGenesis();
-    // MessageEvents.addListener('onMessage', res => {
-    //   if (res && res.message) {
-    //     if (res.type === 'inbound') {
-    //       addInboundMessage(res.message);
-    //     } else {
-    //       addOutboundMessage(res.message);
-    //     }
-    //   }
-    // });
+    MessageEvents.addListener('onMessage', res => {
+      console.log(JSON.stringify(res));
+      if (res) {
+        if (res.type === 'inbound') {
+          addInboundMessage(res.message, res.data ? res.data : null);
+        } else {
+          addOutboundMessage(res.message);
+        }
+      }
+    });
     return () => {};
   }, []);
 
-  const addInboundMessage = text => {
-    if (text) {
+  const addInboundMessage = (text, image) => {
+    if (image) {
       setMessages(previousMessages =>
         GiftedChat.append(previousMessages, [
           {
             _id: Date.now().toString(),
-            text: text,
+
             createdAt: new Date(),
             user: {
               _id: 1,
             },
+            image: image,
           },
         ]),
       );
+    } else {
+      if (text) {
+        setMessages(previousMessages =>
+          GiftedChat.append(previousMessages, [
+            {
+              _id: Date.now().toString(),
+
+              text: text,
+              createdAt: new Date(),
+              user: {
+                _id: 1,
+              },
+            },
+          ]),
+        );
+      }
     }
   };
 
@@ -113,10 +131,8 @@ const Chats = () => {
         user={{
           _id: 1,
         }}
+        renderActions={renderActions}
       />
-      <TouchableOpacity onPress={uploadImage}>
-        <Text>Upload</Text>
-      </TouchableOpacity>
     </View>
   );
 };
